@@ -1,0 +1,22 @@
+schemaVersion: 2.1.0
+metadata:
+  name: super-heroes
+components:
+  - name: tools
+    container:
+      image: registry.redhat.io/devspaces/udi-rhel8:latest
+      memoryLimit: 4Gi
+      endpoints:
+        - exposure: none
+          name: debug
+          protocol: tcp
+          targetPort: 5005
+        - exposure: public
+          name: 8080-tcp
+          protocol: http
+          targetPort: 8080
+      env:
+        - name: USE_JAVA17
+          value: "true"
+        - name: KUBEDOCK_ENABLED
+          value: "true"
